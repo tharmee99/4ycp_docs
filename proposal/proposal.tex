@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,twocolumn]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -27,12 +27,31 @@
 \usepackage{multicol} 
 \usepackage{oubraces}
 \usepackage{stfloats}
+
+% Bibliography
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% Common templates
 \usepackage{../templates/templates}
 
+% Figure formatting
 \setcounter{tocdepth}{3}
 \counterwithin{figure}{subsection}
 \counterwithin{table}{subsection}
 
 \begin{document}
-	\makeTitlePage{Final Proposal Draft}{ELEC0118 Fourth Year MEng Project}
+	\makeTitlePage{Final Project Proposal Draft}{ELEC0118 Fourth Year MEng Project}
+	\section{Abstract}
+	\input{abstract.tex}
+	\section{Introduction}
+	\input{introduction.tex}
+	\section{Aims and Objectives}
+	\input{objectives.tex}
+	\section{Preliminary Assessment of Risks}
+	\input{risks.tex}
+	\section{References}
+	\printbibliography
+	
 \end{document}

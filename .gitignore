@@ -1,4 +1,8 @@
 *.log
 *.aux
 *.synctex.gz
-
+*.out
+*-blx.bib
+*.bbl
+*.blg
+*.run.xml
