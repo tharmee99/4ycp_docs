@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{commonTemplates}[2020/10/02 1.0.0 Common Templates]
+
+\newcommand{\makeTitlePage}[2]{ 
+	\begin{titlepage}
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+		\begin{tikzpicture}[remember picture, overlay]
+		\node [anchor=north east, inner sep=0pt]  at (current page.north east)
+		{\includegraphics[width=21cm]{../resources/ucl-banner-dl-port-outline.eps}};
+		\end{tikzpicture}\\[3cm]
+		\center
+		
+		\textsc{\Large University College London}\\[0.5cm]
+		\textsc{\large Department of Electronic and Electrical Engineering}\\[0.5cm]
+		
+		\HRule \\[0.4cm]
+		\setstretch{1.5}
+		{ \huge \bfseries #1}\\[0.4cm]
+		\setstretch{1.0}
+		\HRule \\[1.0cm]
+		
+		\begin{tabular*}{0.8\textwidth}{l@{\extracolsep{\fill}}r}
+			\large\textit{Team Member Names} & \large\textit{Student Numbers} \\
+			\textsc{An Vo} & \textsc{00000000} \\
+			\textsc{Mindaugas Jarmolovi\v{c}ius} & \textsc{17139494} \\
+			\textsc{Oliver Jaison} & \textsc{00000000} \\
+			\textsc{Tharmetharan Balendran} & \textsc{00000000} \\
+			\\[1.5cm]
+			\large\textit{Supervisor} & \\%\large\textit{Supervisor} \\
+			Prof. \textsc{Robert Killey} & \\%Dr./Prof  \textsc{Last Name} \\
+		\end{tabular*}
+		
+		
+		\vfill
+		\setstretch{2.5}
+		{ \large \bfseries #2}\\[1cm]
+		\setstretch{1.0}
+		{\large\today}\\[2cm]
+		
+	\end{titlepage}	
+	\pagebreak
+}
+\endinput
+
+
+
