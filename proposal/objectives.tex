@@ -18,7 +18,7 @@ Once you know what you will be doing, put the steps into a Gantt Chart.Look onli
 
 \fi
 
-The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to achieved:
+The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved: 
 
 \subsection{Choosing an Appropriate Neural Network Architecture}
 
@@ -36,6 +36,15 @@ Once a suitable neural network has been chosen, the transmitting and receiving e
 
 \subsection{Implementing the Proposed Transmitter/Receiver on an FPGA}
 
-Once the transmitter and receiver have been decided on, they will need to be implemented on a suitable FPGA. 
+Once the transmitter and receiver have been decided on, they will need to be implemented on a suitable FPGA.
+
+\begin{itemize}
+	\item floating point vs fixed point arithmetic 
+	\item single FPGA vs multiple FPGA - fast communication protocols
+	\item feed forward ANN on FPGA \autocite{7011454}
+	\item ANN based PID controller on FPGA \autocite{5328349}
+\end{itemize}
 
 \subsection{Training and Testing the System using an Optical Fibre Communication System}
+
+If time and circumstance permits the project could conclude by testing the designed system using an experimental setup to simulate the communication channel as opposed to a computer model. This would bring light to discrepancies between the real-life setup and the simulated model. As well as that, it would validate that the design works as well in an experimental setup as it does in simulation. The neural network could be trained at different lengths of fibre and observed to see how the learned parameters as well as the bit error rate differ to traditional methods of encoding/decoding. 
