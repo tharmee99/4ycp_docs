@@ -14,6 +14,28 @@ The clearer you are with this, the higher the chances will be for knowing how to
 Break the Objectives down into pieces on which each of your teammates will focus. 
 Show how the individual objectives create the project’s overall end objective.
 
-Once you know what you will be doing, put the step sinto a Gantt Chart.Look online for a Gantt Chart description if you need to.
+Once you know what you will be doing, put the steps into a Gantt Chart.Look online for a Gantt Chart description if you need to.
 
 \fi
+
+The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to achieved:
+
+\subsection{Choosing an Appropriate Neural Network Architecture}
+
+The modulation scheme as well as the encoding of the bits will be learned for the specific communication channel by a neural network at the transmitter. Likewise, at the receiving end of the communication system, a separate neural network will decode the received signal into a stream of bits. A suitable neural network architecture must be chosen for each of the applications. 
+\\
+\\
+The study carried out in \autocite{8664650} features a Convolutional Neural Network (CNN) at the transmitting and receiving end of the communication system. Similar to our own project, the paper describes an end to end neural network implementation for the communication system. The channel used in the simulations is an Additive White Gaussian Noise (AWGN) model and does not consider potential non-linearities introduced in the channel. On the contrary, \autocite{6975096} describes a Multi-Layer Perceptron (MLP) based Non-Linear Equalizer(NLE) at the receiver for an optical communication system. As this paper, clearly discusses the optical communication channel, it may be useful in deciding on a suitable neural network at the transmitter. It should be noted that the paper describes an equalizer and not a demodulator/decoder. 
+\\
+\\
+Further research and literature review needs to be done into different architectures that are available and the requirements that need to be met by the transmitter and receiver of the communication channel. Depending on the chosen neural network architecture, a suitable FPGA will need to be decided on as well. Different architectures may demand different levels of hardware resources.
+
+\subsection{Simulating the Communication Channel and Proposed Transmitter/Receiver}
+
+Once a suitable neural network has been chosen, the transmitting and receiving end as well as the channel itself need to be simulated in python. The neural networks will most likely be implemented using the TensorFlow package in python. The different characteristics of the channel need to be included in the model to ensure that it sufficiently represents how a transmitted signal would be altered by a real optical fibre communication channel. \autocite{8433895} describes a potential model for the optical communication system. This model includes a low-pass filter (LPF) to account for the finite bandwidth of read hardware, a digital to analogue converter (DAC), an analogue to digital converter (ADC), a Mark-Zehnder modulator (MZM), photo-conversion by a photodiode, Gaussian noise as well as the optical fibre transmission itself. We will need to decide on the communication channel configuration that we wish to simulate as well as the data-rate of the communication system. 
+
+\subsection{Implementing the Proposed Transmitter/Receiver on an FPGA}
+
+Once the transmitter and receiver have been decided on, they will need to be implemented on a suitable FPGA. 
+
+\subsection{Training and Testing the System using an Optical Fibre Communication System}
