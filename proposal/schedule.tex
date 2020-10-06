@@ -1,0 +1,60 @@
+% !TeX root = proposal.tex
+
+\begin{landscape}
+	\subsection{Project Schedule}
+
+	\begin{table}[h!]
+		\centering
+		\begin{ganttchart}[
+			y unit title=0.5cm,
+			y unit chart=0.5cm,
+			x unit=1.0mm,
+			hgrid,
+			today=2020-10-06,
+			today label node/.append style={below=12pt},
+			today label font=\itshape\color{blue},
+			today rule/.style={draw=blue, ultra thick},
+			title height=1,
+			bar/.append style={fill=blue!50},
+			bar incomplete/.append style={fill=gray!50},
+			progress label text={$\displaystyle{#1\%}$},
+			time slot format=isodate,
+			milestone/.append style={inner sep=2pt, draw},
+			title/.style={fill=heading!25, draw=black},
+			link/.style={->, ultra thick, style=blue!50!black}
+			]{2020-10-05}{2021-04-30}
+			\gantttitlecalendar{year, month=shortname} \\
+			\gantttitle{40}{6}
+			\gantttitlelist{41,...,52}{7}
+			\gantttitlelist{1,...,16}{7}
+			\gantttitle{}{6} \\
+			
+			\ganttbar[progress=50]{Literature Review}{2020-10-05}{2020-10-22}\\
+			\ganttbar[progress=0]{Neural Network in software}{2020-10-12}{2020-11-11}\\
+			\ganttbar[progress=0]{Channel Model Simulation}{2020-10-12}{2020-11-11}\\
+			\ganttbar[progress=0]{FPGA Data structures}{2020-10-12}{2020-10-26}\\
+			\ganttbar[progress=0]{FPGA ANN Implementation}{2020-10-26}{2020-11-25}\\
+			\ganttbar[progress=0]{Training FPGA}{2020-11-25}{2020-12-18}\\
+			\ganttlink[link/.append, link type=dr]{elem3}{elem4}
+			\ganttlink[link/.append, link type=dr]{elem4}{elem5}
+			
+			\ganttmilestone{Project Proposal finalised}{2020-10-23}\\			
+			\ganttmilestone{Progress Report \#1}{2020-11-11}\\
+			\ganttmilestone{Progress Report \#2}{2020-12-02}\\
+			\ganttmilestone{December Interim Report}{2020-12-16}\\
+			\ganttmilestone{Progress Report \#3}{2021-02-05}\\
+			\ganttmilestone{Progress Report \#4}{2021-03-05}\\
+			\ganttmilestone{Progress Report \#5}{2021-04-13}\\
+			\ganttmilestone{Poster Presentation}{2021-04-17}\\
+			\ganttmilestone{Final Report}{2021-04-30}
+			\ganttvrule{Reading Week}{2020-11-09}
+			\ganttvrule{}{2020-11-15}
+			\ganttvrule[vrule label node/.append style={anchor=north west}]{Holidays}{2020-12-18}
+			\ganttvrule{}{2021-01-11}
+			\ganttvrule{Reading Week}{2021-02-15}
+			\ganttvrule{}{2021-02-21}
+		\end{ganttchart}	
+		\caption{Project schedule and deadlines in a Gantt chart}
+		\label{table:time}
+	\end{table}
+\end{landscape}

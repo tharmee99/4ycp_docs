@@ -14,6 +14,8 @@
 \usepackage{lipsum}
 \usepackage{listings}
 \usepackage{pdflscape}
+\usepackage{pgfgantt}
+\usepackage{colortbl}
 
 
 \usepackage{tabularx}
@@ -41,6 +43,12 @@
 \counterwithin{figure}{subsection}
 \counterwithin{table}{subsection}
 
+% Style colours
+\definecolor{heading}{HTML}{3298DC}
+\definecolor{headingText}{HTML}{FFFFFF} 
+\definecolor{darkred}{rgb}{0.6,0,0}
+
+
 \begin{document}
 	\makeTitlePage{Final Project Proposal Draft}{ELEC0118 Fourth Year MEng Project}
 	% \section{Abstract}
@@ -49,6 +57,7 @@
 	\input{introduction.tex}
 	\section{Aims and Objectives}
 	\input{objectives.tex}
+	\input{schedule.tex}
 	\section{Preliminary Assessment of Risks}
 	\input{risks.tex}
 	
