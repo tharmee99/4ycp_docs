@@ -18,7 +18,14 @@ Once you know what you will be doing, put the steps into a Gantt Chart.Look onli
 
 \fi
 
-The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved: 
+The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel and implement it on a FPGA hardware. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved, which are described in following sections.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{graphics/overall_diagram2.eps}
+	\caption{Simplifier overall system diagram without inside FPGA Neural Network (NN) back-propogation learning.}
+	\label{fig:overall}	
+\end{figure}
 
 \subsection{Choosing an Appropriate Neural Network Architecture}
 
@@ -32,18 +39,34 @@ Further research and literature review needs to be done into different architect
 
 \subsection{Simulating the Communication Channel and Proposed Transmitter/Receiver}
 
-Once a suitable neural network has been chosen, the transmitting and receiving end as well as the channel itself need to be simulated in python. The neural networks will most likely be implemented using the TensorFlow package in python. The different characteristics of the channel need to be included in the model to ensure that it sufficiently represents how a transmitted signal would be altered by a real optical fibre communication channel. \autocite{8433895} describes a potential model for the optical communication system. This model includes a low-pass filter (LPF) to account for the finite bandwidth of read hardware, a digital to analogue converter (DAC), an analogue to digital converter (ADC), a Mark-Zehnder modulator (MZM), photo-conversion by a photodiode, Gaussian noise as well as the optical fibre transmission itself. We will need to decide on the communication channel configuration that we wish to simulate as well as the data-rate of the communication system. 
+The transmitting and receiving end as well as the channel itself need to be simulated as a channel model. The neural networks will most likely be implemented using the TensorFlow package with python. The different characteristics of the channel need to be included in the model to ensure that it sufficiently represents how a transmitted signal would be altered by a real optical fibre communication channel. \autocite{8433895} describes a potential model for the optical communication system. This model includes a low-pass filter (LPF) to account for the finite bandwidth of read hardware, a digital to analogue converter (DAC), an analogue to digital converter (ADC), a Mark-Zehnder modulator (MZM), photo-conversion by a photodiode, Gaussian noise as well as the optical fibre transmission itself. We will need to decide on the communication channel configuration that we wish to simulate as well as the data-rate of the communication system. 
 
-\subsection{Implementing the Proposed Transmitter/Receiver on an FPGA}
+This simulation could replace channel model which would look as a back box while training Neural Networks.
 
-Once the transmitter and receiver have been decided on, they will need to be implemented on a suitable FPGA.
+\subsection{Implementing the Neural Networks on a FPGA}
 
+Implementing Neural Network on FPGA raises multiple problems that need to be solved.
+ 
+\subsubsection{Floating-point vs fixed-point arithmetic}
+FPGA internal data structure has number of trade-off that need to be decided on
 \begin{itemize}
-	\item floating point vs fixed point arithmetic 
-	\item single FPGA vs multiple FPGA - fast communication protocols
-	\item feed forward ANN on FPGA \autocite{7011454}
+	\item \textbf{Floating-point} - allows high precision however are slower are require more resources. Native to other neural networks implemented in software.
+	\item \textbf{Fixed-point} - introduce quantisation noise. Might be insufficient with very small or large values. Also requires deciding on sufficient bits size.
+\end{itemize}
+Preliminary research shows that fixed-point neural network implementation on FPGA achieves over 12x greater in speed, over 13x smaller in area, therefore allows far greater processing density \autocite{omondi_rajapakse_2006}. Therefore, further investigation needs to be done in order to determinate if fixed-point data structure is sufficient.
+
+\subsubsection{Required FPGA resources}
+ Depending on implemented Neural Network, its size, used data structure, a suitable FPGA board needs to selected. 
+ 
+ Option to use multiple FPGA boards that would be linked with fast communication protocols will be also considered, including overall board architecture.
+
+\subsubsection{Neural Network optimisations in FPGA} 
+There are a number of research papers that include some optimisations to implement Neural Networks on FPGA: 
+\begin{itemize}
+	\item Feed forward ANN on FPGA \autocite{7011454}
 	\item ANN based PID controller on FPGA \autocite{5328349}
 \end{itemize}
+Further research will be done to find optimal implementation of Neural Network in HDL.
 
 \subsection{Training and Testing the System using an Optical Fibre Communication System}
 
