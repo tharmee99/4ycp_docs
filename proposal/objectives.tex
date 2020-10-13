@@ -16,6 +16,38 @@ Show how the individual objectives create the project’s overall end objective.
 
 Once you know what you will be doing, put the steps into a Gantt Chart.Look online for a Gantt Chart description if you need to.
 
+Literature
+
+Optics:
+* 8501526 - ML based linear and non-linear noise estimation (for monitoring)
+* 
+
+Neural networks and implementation:
+* 903443 - shows that ANN FAST on fpga provides similar results to ANN algorithms not suitable for hardware implementation (1999, meeeh)
+* 8108073 - DNN on FPGA hardware architecture using a single physical computing layer with adequite performance. Tho paper does not compare with existing non FPGA performance.
+* 7824478 - MFNN on FPGA for digital Pre-Distortion that can be constumised in software. Shows suitabel performance for LTE signal.
+* 8469659 - HNN on FPGA accelerator architecture that uses SIMP structrue in processor to achive high parallelism in DSP.
+* 7280031 - SNN toolkit for implementing on FPGA
+* 9039366 - Research looks at BNN vs DNN, finds that it's a tradeoff of accuracy versus computing overhead this a great way to implement on FPGA for high speed/efficiency applications
+* 6927383 - Moves software NN to FPGA to maximazi utilization (optimised for ANN). Looks at Half/mini/nibble precision, and various algorithms.
+* 9012821 - Implements CNN on fpga with 1TOPS. Mainly talks about tricks to reduce external memory bandwidth.
+* 6614033 - FPNA and Feed forward NN struggles.
+* 8702332 - Proposes QNN architecture to achieve 8.2TMAC/s at 20W which compares to 300W Nvidia P100.
+* 7351805 - Porting NN from software to hardware with dynamic scripting.
+* 9027479 - Paper that proposes a novel technique to implement Sigmoid Function for ANN in FPGA that takes waaaay less resources
+* 8954866 - Implemented SNN on FPGA with some nice performance on MNIST
+* 7799795 - A simple case study to implement ANN on FPGA to show lower small hardware resources and low power consumtion.
+* 8369336 - CeNN implementation on FPGA with quantisation and other methods to greatly increase NN performance.
+* 8892181 - Implementing DSP Blocks in FPGA for neural network implementation.
+* 8330546 - IoT focused FPGA NN that uses 4bit rather then 16bit weights to achieve very similar accuracy. Needs to compare power consumtion with baseline tho.
+* 8280163 - CNN on fgpa. Uses mix of 8bit for first layer, and binary (+1/-1) values for further layers. Shows some improvements however is quite small scale.
+* 8966187 - Fast binarised CNN implementation on FGPA LULs for image recognision.
+* 7929192 - Compares CPU/GPU/FPGA/ASIC BNN showing that FPGA have similar performance to GPU while with much higher efficiency.
+* 8823487 - Large scale FPGA neuromorphic architecture
+* 8412552 - An interesting FPGA implementation for CNN with comparasion with CPU and GPU.
+* 7045812 - Multicore NN implementation on FGPA and performance comparing to CPU (with low budget FPGA)
+* 8693488 - DNN on FPGA to detect weeds shows much higer efficiency and recognision speed over GPU (well written paper)
+
 \fi
 
 The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel and implement it on a FPGA hardware. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved, which are described in following sections.
