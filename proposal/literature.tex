@@ -1,0 +1,80 @@
+% !TeX root = proposal.tex
+
+\iffalse
+Literature Review
+-----------------
+
+Critique papers to describe what else can be done (gaps/what missing how to fill/what's not ideal)
+
+Literature
+
+Optics:
+* 8501526 - ML based linear and non-linear noise estimation (for monitoring)
+
+Neural networks and implementation:
+* 903443 - shows that ANN FAST on fpga provides similar results to ANN algorithms not suitable for hardware implementation (1999, meeeh)
+* 8108073 - DNN on FPGA hardware architecture using a single physical computing layer with adequite performance. Tho paper does not compare with existing non FPGA performance.
+* 7824478 - MFNN on FPGA for digital Pre-Distortion that can be constumised in software. Shows suitabel performance for LTE signal.
+* 8469659 - HNN on FPGA accelerator architecture that uses SIMP structrue in processor to achive high parallelism in DSP.
+* 7280031 - SNN toolkit for implementing on FPGA
+* 9039366 - Research looks at BNN vs DNN, finds that it's a tradeoff of accuracy versus computing overhead this a great way to implement on FPGA for high speed/efficiency applications
+* 6927383 - Moves software NN to FPGA to maximazi utilization (optimised for ANN). Looks at Half/mini/nibble precision, and various algorithms.
+* 9012821 - Implements CNN on fpga with 1TOPS. Mainly talks about tricks to reduce external memory bandwidth.
+* 6614033 - FPNA and Feed forward NN struggles.
+* 8702332 - Proposes QNN architecture to achieve 8.2TMAC/s at 20W which compares to 300W Nvidia P100.
+* 7351805 - Porting NN from software to hardware with dynamic scripting.
+* 9027479 - Paper that proposes a novel technique to implement Sigmoid Function for ANN in FPGA that takes waaaay less resources
+* 8954866 - Implemented SNN on FPGA with some nice performance on MNIST (also uses Nvidia P100)
+* 7799795 - A simple case study to implement ANN on FPGA to show lower small hardware resources and low power consumtion.
+* 8369336 - CeNN implementation on FPGA with quantisation and other methods to greatly increase NN performance.
+* 8892181 - Implementing DSP Blocks in FPGA for neural network implementation.
+* 8330546 - IoT focused FPGA NN that uses 4bit rather then 16bit weights to achieve very similar accuracy. Needs to compare power consumtion with baseline tho.
+* 8280163 - CNN on fgpa. Uses mix of 8bit for first layer, and binary (+1/-1) values for further layers. Shows some improvements however is quite small scale.
+* 8966187 - Fast binarised CNN implementation on FGPA LULs for image recognision.
+* 7929192 - Compares CPU/GPU/FPGA/ASIC BNN showing that FPGA have similar performance to GPU while with much higher efficiency.
+* 8823487 - Large scale FPGA neuromorphic architecture
+* 8412552 - An interesting FPGA implementation for CNN with comparasion with CPU and GPU.
+* 7045812 - Multicore NN implementation on FGPA and performance comparing to CPU (with low budget FPGA)
+* 8693488 - DNN on FPGA to detect weeds shows much higer efficiency and recognision speed over GPU (well written paper)
+* 9056829 - 
+* 9102751 - M
+
+List of NNs mentioned in papers with FPGA:
+MLP - Multi-Layer perceptron 
+MFNN - Multilayer Feedforward
+RNN - Recurrent 
+    Mainly used for time series data. Introduces memory to the neural network. Most likely contestant.
+HNN - Hopfield
+SNN - Spiking
+BNN - Binarized
+DNN - Deep
+CNN - Convolutional
+Feed Forward NN
+QNN - Quantized
+CeNN - Cellular
+
+Tham: I would recommend choosing 5-10 of the most relevant papers to our project and discussing what they have done, what's missing and how we can use their results/findings as well as how we can improve on their approach. I've added in two papers I think are good examples in terms of the NN comms implementation.
+
+Look for more papers for using ML in COMS
+
+\fi
+
+Various works have already been carried out in the field of neural network implementation on FPGAs as well as Neural networks as modulators/demodulators in communication channels. Some of the most relevant literature is discussed in further detail below:
+
+\subsection{B. Karanov et al. “End-to-End Deep Learning of Optical Fiber Communications” \autocite{8433895}}
+
+This paper describes a simulation based end-to-end implementation of deep learning for a optical fiber communication system followed by experimental validation. The simulations are carried out in Python by utilizing the tensorflow package. The modulator and demodulator are designed as fully connected NNs with 2 hidden layers and an arbitrarily chosen number of nodes per layer. The chosen activation functions used in the neural networks are a variation of the Rectified Linear Unit (ReLu). The memory introdced by the channel between transmitted symbols is accounted for by serializing multiple neighbouring symbols before they are transmitted. This paper also describes the simulation of the model characteristics which incorporate the chromatic dispersion, photodiode detection, finite bandwidth as well as noise introduced at various points in the communication system. Furthermore, the paper goes on to experimentally validate the porposed system. The system is able to achieve better performance than systems that utilize feed-forward equalization (FFE).
+\\
+\\
+The end-to-end implementation described in this paper similar to the goal of this project. The chosen neural network architecture is a simple NN. We aim to reproduce the results obtained in the simaultions described in this paper and then experiment with different architectures of NNs to better suit the application of optical fiber communications. Furthermore, the experimental implementation in this paper is completely software based. This is sub-optimal and is not ideal for high throughput high speed applications. We aim to implement the NNs at a hardware level on FPGAs to allow for increased performance. 
+
+\subsection{B. Zhu et al. “Joint Transceiver Optimization for Wireless Communication PHY Using Neural Network” \autocite{8664650}}
+
+% 9012821
+
+% 8330546, 6927383
+
+% 9039366
+
+% 7929192 (more papers that compares results with GPUs)
+
