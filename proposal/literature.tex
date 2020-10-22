@@ -11,6 +11,9 @@ Literature
 Optics:
 * 8501526 - ML based linear and non-linear noise estimation (for monitoring)
 
+ML in Communications
+* 8114893 - shows a new modulation scheme we are unfamiliar with and has some ML predictor
+
 Neural networks and implementation:
 * 903443 - shows that ANN FAST on fpga provides similar results to ANN algorithms not suitable for hardware implementation (1999, meeeh)
 * 8108073 - DNN on FPGA hardware architecture using a single physical computing layer with adequite performance. Tho paper does not compare with existing non FPGA performance.
@@ -36,8 +39,8 @@ Neural networks and implementation:
 * 8412552 - An interesting FPGA implementation for CNN with comparasion with CPU and GPU.
 * 7045812 - Multicore NN implementation on FGPA and performance comparing to CPU (with low budget FPGA)
 * 8693488 - DNN on FPGA to detect weeds shows much higer efficiency and recognision speed over GPU (well written paper)
-* 9056829 - 
-* 9102751 - M
+* 9056829 - Compares M-ary binary NN sizes to determine which gets the most accuracy (a lot of details), compares implemetations with DSP and without.
+* 9102751 - Another M-ary binary NN paper, similar results
 
 List of NNs mentioned in papers with FPGA:
 MLP - Multi-Layer perceptron 
@@ -50,31 +53,82 @@ BNN - Binarized
 DNN - Deep
 CNN - Convolutional
 Feed Forward NN
-QNN - Quantized
+QNN - Quantized 
 CeNN - Cellular
 
-Tham: I would recommend choosing 5-10 of the most relevant papers to our project and discussing what they have done, what's missing and how we can use their results/findings as well as how we can improve on their approach. I've added in two papers I think are good examples in terms of the NN comms implementation.
 
 Look for more papers for using ML in COMS
 
+
+coms no real time implementation of end to end deep learning
+
 \fi
 
-Various works have already been carried out in the field of neural network implementation on FPGAs as well as Neural networks as modulators/demodulators in communication channels. Some of the most relevant literature is discussed in further detail below:
+Various works have already been carried out in the field of neural network implementation on FPGAs as well as NNs as modulators/demodulators in communication channels. Some of the most relevant literature is discussed in further detail below:
 
-\subsection{B. Karanov et al. “End-to-End Deep Learning of Optical Fiber Communications” \autocite{8433895}}
+\subsection{Neural Networks in Communication Systems}
 
-This paper describes a simulation based end-to-end implementation of deep learning for a optical fiber communication system followed by experimental validation. The simulations are carried out in Python by utilizing the tensorflow package. The modulator and demodulator are designed as fully connected NNs with 2 hidden layers and an arbitrarily chosen number of nodes per layer. The chosen activation functions used in the neural networks are a variation of the Rectified Linear Unit (ReLu). The memory introdced by the channel between transmitted symbols is accounted for by serializing multiple neighbouring symbols before they are transmitted. This paper also describes the simulation of the model characteristics which incorporate the chromatic dispersion, photodiode detection, finite bandwidth as well as noise introduced at various points in the communication system. Furthermore, the paper goes on to experimentally validate the porposed system. The system is able to achieve better performance than systems that utilize feed-forward equalization (FFE).
+Numerous studies have been carried out describing the implementation of deep learning to optimize communication systems. An end to end deep learning of optical fiber communication is presented in \autocite{8433895}. The whole communication system is treated as one complete system with a neural network at the transmitting end (modulator) and one neural network at the receiving end (demodulator). The neural networks are trained simultaneously. An improved Bit Error Rate (BER) compared to traditional modulation schemes was observed. However, the paper does not describe a real-time implementation of the system. Our approach aims to take inspiration from this paper as to the neural network configuration but aims to implement the whole system on FPGAs to allow for real time implementation. While this paper describes an end-to-end implementation, \autocite{6975096} focuses on just the non-linear equalizer implementation using a novel neural network architecture. This paper will be useful as it also describes a optical fiber communication channel. However the described approach focuses only on the equalizer and uses traditional approaches for the rest of the system. Similarly \autocite{8114893} describes a Support Vector Machine (SVM) implementation of a demodulator which is able to compensate for rotations in the constellation diagram. This system is implemented in an optical communication channel as well. However it is not an end-to-end implementation. Another example of an end-to-end deep learning implementation is described in \autocite{8664650}. This paper describes how a learnt modulation scheme outperforms traditional QAM schemes for a wireless communication channel. Inspiration may be taken for the end-to-end implementation of the neural networks, however it should be noted that the communication channel is different and therefore further consideration will be required. 
 \\
 \\
-The end-to-end implementation described in this paper similar to the goal of this project. The chosen neural network architecture is a simple NN. We aim to reproduce the results obtained in the simaultions described in this paper and then experiment with different architectures of NNs to better suit the application of optical fiber communications. Furthermore, the experimental implementation in this paper is completely software based. This is sub-optimal and is not ideal for high throughput high speed applications. We aim to implement the NNs at a hardware level on FPGAs to allow for increased performance. 
+Some research is also being done to reconfigure the layer sizes, weights as well as activation functions without having to perform resynthesis on the FPGA \autocite{7824478}. The paper describes an implementation in the context of pre-distortion techniques for a Power Amplifier.
 
-\subsection{B. Zhu et al. “Joint Transceiver Optimization for Wireless Communication PHY Using Neural Network” \autocite{8664650}}
+
+
+\subsection{Performance comparison between CPU, GPU, FPGA and ASIC implementation of Neural Networks}
+\label{sec:cpu_gpu_fpga_asic}
+
+It is well known that graphical processing units (GPUs) are more powerful and power efficient than central processing unit (CPUs) in neural network applications due to their dedicated computing hardware. A number of researches have further proven that neural networks can be further optimised to substantially reduce memory and circuit requirements, therefore reducing power consumption by more than a one order in magnitude with binary neural network (BNNs) implementations \autocite{7929192,8702332,8954866}. However, there is a lack of information about latency comparison between FPGA and GPU implemented Neural Networks which is an important characteristic in any communication system.
+% 7929192 - BNN and various tables
+% 8954866 - SNN compares FPGA and GPU
+% 8702332 
+
+\subsection{Comparing FPGA's DSP, LUT or ALM based neurons}
+\label{sec:dsp_lut_alm}
+
+A number of papers use different methods of implementing actual neurons themselves. Modern FPGA chips have built-in Digital Signal Processing (DSP) blocks that allow to be configured to perform fast arithmetic operations, however this limits layer/node size due to the limited number of DSP blocks \autocite{8693488,8892181,8330546}. Binary and quantised neural networks can be implemented without the need for DPS blocks as each neuron can be simplified with few Lookup Tables (LUTs) \autocite{8966187,8280163,8369336,8108073}. A class of FPGAs also may include Adaptive Logic Modules (ALMs) that can be used as an alternative to LUTs \autocite{8702332}.
+% 8693488 - DSP based
+% 8966187 - LUT based
+% 8280163 - LUT based, all binary
+% 8330546 - Uses kinda both
+% 8892181 - Full DSP
+% 8369336 - LUT based
+% 8702332 - Full ALM (DNN)
+% 8108073 - LUT based
+
+\subsection{FPGA Memory}
+\label{sec:fpga_memory}
+
+Depending on Neural Network size and required bandwidth, internal or external memory might be used. Internal memory is limited in size, and might cause issues with maximum internal FPGA connections \autocite{7929192}.
+External memory increases complexity and requires a high bandwidth bus. There are a number of improvements that can be used for neural network architectures such as memory data compression to overcome bandwidth issues \autocite{9012821}. 
+
+\subsection{Data structures}
+\label{sec:fpga_data_structures}
+
+An FPGA's internal data structure has a trade-off between performance and accuracy, as some neural networks can operate on smaller numbers without losing much accuracy \autocite{8330546}, with huge improvements in speed and need of FPGA resources \autocite{omondi_rajapakse_2006}. 
+
+Throughout different research papers, a number of data structures are proposed, some use a mix for different layers:
+\begin{itemize}
+	\item Full-Precision Floating-point (32bit)
+	\item Half-Precision Floating-point (16bit) \autocite{6927383,8108073}
+	\item Mini-Precision Floating-point (8bit) \autocite{6927383}
+	\item Nibble-Precision Floating-point (4bit) \autocite{6927383}
+	\item Quantized Number (up to 8bit) \autocite{8702332,8280163,8330546}
+	\item Binary Matrix or Vector \autocite{9039366,8280163,7929192}
+\end{itemize}
+
+\subsection{Sigmoid optimisations}
+\label{sec:fpga_sigmoid}
+The sigmoid function is a commonly used activation function in neural networks, and is an essential component of neural networks. It uses Sigmoid function \ref{sigmoid} which uses a mathematical expression which uses a lot of resources to implement:
+\\
+\begin{equation}\label{sigmoid}
+    f(x) = \frac{1}{1+e^{-x}}
+\end{equation}
+\\
+A novel approximation is available which uses about a third of FPGA resources \autocite{9027479}.
+
 
 % 9012821
-
 % 8330546, 6927383
-
 % 9039366
-
 % 7929192 (more papers that compares results with GPUs)
-

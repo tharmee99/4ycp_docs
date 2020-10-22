@@ -22,29 +22,49 @@ Once you know what you will be doing, put the steps into a Gantt Chart.Look onli
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{graphics/overall_diagram2.eps}
-	\caption{Simplified overall system diagram with the modulator and demodulator shown as black box NN implmeneted on FPGAs}
+	\caption{Simplified overall system diagram with the modulator and demodulator shown as black box neural network implemented on FPGAs}
 	\label{fig:overall}	
 \end{figure}
 
-The main objective of this project is to design a suitable NN to optimize the transmission of data via a communication channel and implement it on a FPGA hardware. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved:
+The main objective of this project is to design a suitable neural network to optimize the transmission of data via a communication channel and implement it on an FPGA. The channel that will be of primary focus is the optical fibre communication channel where non-linearities introduced by chromatic dispersion and photodiode detection is a major problem that needs to be overcome. The project can be broken down into individual objectives that will need to be achieved:
 
 \begin{itemize}
-    \item Choosing an Appropriate NN Architecture
-    \item Simulating the Communication Channel and Proposed Transmitter/Receiver
-    \item Implementing the NN on a FPGA
+    \item Choosing an appropriate neural network architecture
+    \item Simulating the communication channel and proposed transmitter/receiver
+    \item Evaluating which neural network configuration perform best within limits of the chosen FPGA
+    \item Implementing the neural network on a FPGA
     \item Training and Testing the System using an Optical Fibre Communication System
 \end{itemize}
 
 \subsection{Choosing an Appropriate Neural Network Architecture}
 
-The modulation scheme as well as the encoding of the bits will be learned for the specific communication channel by a NN at the transmitter. Likewise, at the receiving end of the communication system, a separate NN will decode the received signal into a stream of bits. A simple NN sometimes referred to a Multi-Layer Perceptron (MLP) is shown in Fig X.X. This example shows a very simple MLP with an input layer followed by 3 layers. The last layer is known as the output layer as it produces the output. The 2 layers in-between the input and output layers are referred to as hidden layers. This particular MLP takes a 3 valued vector $\boldsymbol{x}$ and produces a single real valued output $\hat{y}$. In addition to this it is fully connected meaning that each node (represented by a circle in the figure) receives input from each of the nodes in the previous layer. Each layer is characterized by it's weight matrix $\boldsymbol{W}$ as well as it's activation function. During training it is $\boldsymbol{W}$ that is learnt to obtain the relationship between input and output.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{graphics/mlp.pdf}
+	\caption{A very simple neural network; A fully connected MLP with 2 hidden layers and one output layer. The vector $\boldsymbol{x}$ is the input ($\boldsymbol{x} \in \rm I\!R^{3}$) and $\hat{y}$ is the output}
+	\label{fig:mlp}	
+\end{figure}
+
+The modulation scheme as well as the encoding of the bits will be learned for the specific communication channel by a neural network at the transmitter. Likewise, at the receiving end of the communication system, a separate neural network will decode the received signal into a stream of bits. A simple neural network sometimes referred to a Multi-Layer Perceptron (MLP) is shown in Fig \ref{fig:mlp}. This example shows a very simple MLP with an input layer followed by 3 layers. The last layer is known as the output layer as it produces the output. The 2 layers in-between the input and output layers are referred to as hidden layers. Each layer is characterized by its weight matrix $\boldsymbol{W}$ as well as it's activation function. During training it is $\boldsymbol{W}$ that is learnt to obtain the relationship between input and output.
 \\
 \\
-The study carried out in \autocite{8664650} features a Convolutional Neural Network (CNN) at the transmitting and receiving end of the communication system. Similar to our own project, the paper describes an end to end neural network implementation for the communication system. The channel used in the simulations is an Additive White Gaussian Noise (AWGN) model and does not consider potential non-linearities introduced in the channel. On the contrary, \autocite{6975096} describes a Multi-Layer Perceptron (MLP) based Non-Linear Equalizer(NLE) at the receiver for an optical communication system. As this paper, clearly discusses the optical communication channel, it may be useful in deciding on a suitable neural network at the transmitter. It should be noted that the paper describes an equalizer and not a demodulator/decoder. 
+The study carried out in \autocite{8664650} features a Convolutional Neural Network (CNN) at the transmitting and receiving end of the communication system. Similar to our own project, the paper describes an end-to-end neural network implementation for the communication system. The channel used in the simulations is an Additive White Gaussian Noise (AWGN) model and does not consider potential non-linearities introduced in the channel. On the contrary, \autocite{6975096} describes a Multi-Layer Perceptron (MLP) based Non-Linear Equalizer(NLE) at the receiver for an optical communication system.  It should be noted that the paper describes an equalizer and not a demodulator/decoder. \autocite{8114893} describes an SVM implementation of a demodulator. This machine learning algorithm is not a neural network but was shown to still produce improved BERs to traditional demodulation techniques. 
 \\
 \\
-When deciding on a NN we must not only choose an approapriate architecture but also choose the most optimal activation function. The activation function is key as it is this that introduces non-linearity into the learnt model. Some of the most commonly used activation fucntions are the Rectified Linear Unit (ReLu), hyperbolid tangent (tanh), sigmoid and the leaky ReLu. These are illustrated in Fig. X.X.
+When deciding on a NN we must not only choose an appropriate architecture but also choose the optimal activation function. The activation function is key as it is this that introduces non-linearity into the learnt model. Some of the most commonly used activation functions are the Rectified Linear Unit (ReLu), hyperbolic tangent (tanh), sigmoid and the leaky ReLU. The equations for these are given below:
 \\
+\begin{equation}
+    \begin{split}
+        f_{ReLU}(z) &= \max(0,z) \\
+        f_{tanh}(z) &= \frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\
+        f_{sigmoid}(z) &= \frac{1}{1+e^{-z}} \\
+        f_{leakyReLU}(z) &= 
+        \begin{cases}
+            0.001z \quad & \text{if $z\leq 0$} \\
+            z \quad & \text{if $z>0$}
+        \end{cases}
+    \end{split}
+\end{equation}
 \\
 Further research and literature review needs to be done into different architectures that are available and the requirements that need to be met by the transmitter and receiver of the communication channel. Depending on the chosen neural network architecture, a suitable FPGA will need to be decided on as well. Different architectures may demand different levels of hardware resources.
 
@@ -67,62 +87,31 @@ The signal suffers from chromatic dispersion as it traverses through the optical
 where $\omega$ is angular frequency, $\beta_z$ is the group velocity dispersion and L is the fibre length.
 \\
 \\
-At the receiver, photodetection is carried out by using the proportional relationship between the output voltage and power of the signal which in turn is proportional to the square of the magnitude of the optical field, resulting in the following mathematical expression.
+At the receiver, photo-detection is carried out by using the proportional relationship between the output voltage and power of the signal which in turn is proportional to the square of the magnitude of the optical field, resulting in the following mathematical expression.
 
 \begin{equation}
     V_{out}(t) = |A(t,L)|^2
 \end{equation}
-    where A(t,L) is the inverse Fourier transform of eqn.\ref{opticalField}.
+    where A(t,L) is the inverse Fourier transform of Eq.\ref{opticalField}.
 \\
 \\
-To complete the mathematical representation of the signal through an optical channel, the receiver noise is applied to the photodetected signal. This is in the form of white Gaussian noise (randomly generated volatages $\DeltaV(t)$, which are generated with a normal distribution) which is added to both the model shot noise and the thermal noise. This voltage waveform is then the representation of the signal after it leaves the receiver.
+To complete the mathematical representation of the signal through an optical channel, the receiver noise is applied to the photo-detected signal. This is in the form of white Gaussian noise (randomly generated voltages $\Delta V(t)$, which are generated with a normal distribution) which is added to both the model shot noise and the thermal noise. This voltage waveform is then the representation of the signal after it leaves the receiver.
 \\
 \\
-The transmitting and receiving end as well as the channel itself need to be simulated as a channel model. The neural networks will most likely be implemented using the TensorFlow package with python. The different characteristics of the channel need to be included in the model to ensure that it sufficiently represents how a transmitted signal would be altered by a real optical fibre communication channel. \autocite{8433895} describes a potential model for the optical communication system. This model includes a low-pass filter (LPF) to account for the finite bandwidth of read hardware, a digital to analogue converter (DAC), an analogue to digital converter (ADC), a Mark-Zehnder modulator (MZM), photo-conversion by a photodiode, Gaussian noise as well as the optical fibre transmission itself. We will need to decide on the communication channel configuration that we wish to simulate as well as the data-rate of the communication system. 
-
-This simulation could replace channel model which would look as a back box while training Neural Networks.
+The transmitting and receiving end as well as the channel itself need to be simulated as a channel model. The neural networks will most likely be implemented using the TensorFlow package with python. The python programming language was chosen for quick prototyping purposes as well as compatibility with TensorFlow. TensorFlow allows for quick experimentation and configuration of different neural network architectures. The above proposed model would be treated as a black box between the transmitting and receiving neural network. 
 
 \subsection{Implementing the Neural Networks on a FPGA}
 
-Implementing Neural Network on FPGA raises a number problems that need to be considered.
- 
-\subsubsection{Data structures}
-FPGA internal data structure has a tradeoff between performance and accuracy, as some of neural network can operate on smaller numbers without losing much accuracy \autocite{8330546}, with huge improvements in speed and need of FPGA resources \autocite{omondi_rajapakse_2006}. 
+Implementing Neural Network on FPGA raises a number problems that need to be considered. Depending on the implemented Neural Network, its size, and the data structure it uses, a suitable FPGA board needs to selected. The option to use multiple FPGA boards that would be linked with fast communication protocols will be also considered, including overall board architecture. Some further considerations are discussed alongside existing literature in \S \ref{sec:cpu_gpu_fpga_asic} - \S \ref{sec:fpga_sigmoid}.
 
-Thoughtout different research papers, a number of data structures are proposed, some use a mix for different layers:
-\begin{itemize}
-	\item Full-Precision Floating-point (32bit)
-	\item Half-Precision Floating-point (16bit) \autocite{6927383,8108073}
-	\item Mini-Precision Floating-point (8bit) \autocite{6927383}
-	\item Nibble-Precision Floating-point (4bit) \autocite{6927383}
-	\item Quantized Number (up to 8bit) \autocite{8702332,8280163,8330546}
-	\item Binary Matrix or Vector \autocite{9039366,8280163,7929192}
-\end{itemize}
 
-\subsubsection{Required FPGA resources}
- Depending on implemented Neural Network, its size, used data structure, a suitable FPGA board needs to selected. 
- 
- Option to use multiple FPGA boards that would be linked with fast communication protocols will be also considered, including overall board architecture.
-
-\subsubsection{FPGA Memory}
-Depending on Neural Network size and required bandwidth, internal or external memory might be used. Internal memory is limited in size, and might cause issues with maximum internal FPGA connections \autocite{7929192}.
-External memory increases complexity and requires high bandwidth bus. There are a number of improvements that can be used for NN architecture such a memory data compression to allow avoid bandwitdth issues \autocite{9012821}.
-
-\subsubsection{Sigmoid optimisations}
-Sigmoid function is used in Neural Networks (such as ANN) as the activation function, and is one of main nerual network blocks. It uses Sigmoid function \autoref{sigmoid} which uses complex mathematical expression.
-\begin{equation}\label{sigmoid}
-    f(x) = \frac{1}{1+e^{-x}}
-\end{equation}
-
-A novel approximation is available which uses about a third of FPGA resources \autocite{9027479}.
-
-\subsubsection{Neural Network optimisations in FPGA} 
-There are a number of research papers that include some optimisations to implement Neural Networks on FPGA: 
-\begin{itemize}
-	\item Feed forward ANN on FPGA \autocite{7011454}
-	\item ANN based PID controller on FPGA \autocite{5328349}
-\end{itemize}
-Further research will be done to find optimal implementation of Neural Network in HDL.
+% \subsubsection{Neural Network optimisations in FPGA} 
+% There are a number of research papers that include some optimisations to implement Neural Networks on FPGA: 
+% \begin{itemize}
+% 	\item Feed forward ANN on FPGA \autocite{7011454}
+% 	\item ANN based PID controller on FPGA \autocite{5328349}
+% \end{itemize}
+% Further research will be done to find optimal implementation of Neural Network in HDL.
 
 \subsection{Training and Testing the System using an Optical Fibre Communication System}
 
