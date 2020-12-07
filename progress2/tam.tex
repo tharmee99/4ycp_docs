@@ -1,4 +1,27 @@
 % !TeX root = progress2.tex
 
 \subsubsection{Progress}
+
+During the last three weeks the key parts of the project that I worked on are the neural network design as well as the optical channel simulation. My individual milestones are discussed below:
+\begin{itemize}
+    \item \textbf{Finalization of Optical Channel Model}\\
+    Having completed the optical channel model in python I was able to simulate BER for different lengths and pulse-shapes for a simple 4-PAM modulation scheme.
+    
+    \item \textbf{Tweaking Autoencoder Parameters}\\
+    I took some time to experiment with different activation functions (leaky/clipped ReLU, softplus, elu and custom activation functions) and regularization techniques such as dropout layers and activation regularizers. Activation regularizers in particular were interesting as they penalize large outputs of a layer and thereby force the output to have a small magnitude. This can be used to penalize the increasing symbol power and prevent the learnt symbols from having extremely large energies to overcome modelled noise. It should be noted that the autoencoder discussed here is a simple prototype and different to that discussed in the next section.
+    
+    \item \textbf{Replication of Neural Network discussed by B. Karanov et al. \autocite{8433895}}\\
+    The neural network configuration discussed in this paper demonstrated promising results and would be a good place to start. An identical implementation of the neural network was configured using tensorflow. To enable this, the optical channel model had to be re-developed to be compatible with tensorflow's tensor datatype. I was able to implement these and learn symbols similar to those discussed in the paper.
+    
+    \item \textbf{Customization of layers to further decrease BER}\\
+    As the chromatic dispersion results in ISI, an encoder/decoder that is able to consider previously received/transmitted symbols should outperform one that solely considers one symbol at a time. To simulate this I started implementing LSTM layers at the encoder and decoder. This is still in progress.
+    
+\end{itemize}
+
 \subsubsection{Difficulties Encountered}
+\begin{itemize}
+    \item It is difficult to interpret the exact amount of noise that was simulated in the simulations discussed in \autocite{8433895}. Therefore it is difficult to compare BER achieved by us to those in the paper.
+    
+    \item With the complexity introduced by the optical channel layer, the autoencoder takes a long time to train on the CPU version of tensorflow. This has been discussed with the project supervisor and access to remote GPU training is being considered.
+    
+\end{itemize}

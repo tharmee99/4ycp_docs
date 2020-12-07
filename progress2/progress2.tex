@@ -42,7 +42,7 @@
 
 % Figure formatting
 \setcounter{tocdepth}{3}
-\counterwithin{figure}{subsection}
+\counterwithin{figure}{subsection} 
 \counterwithin{table}{subsection}
 
 % Style colours
@@ -50,12 +50,25 @@
 \definecolor{headingText}{HTML}{FFFFFF} 
 \definecolor{darkred}{rgb}{0.6,0,0}
 
+\setlength{\parindent}{0pt}
 
 \begin{document}
 	\makeTitlePage{Progress Report II}{ELEC0118 Fourth Year MEng Project}
         
 	\section{Introduction}
-	
+	    \subsection{Project Goals}
+	    
+	    The main focus of the project during the past couple weeks were the following:
+	    
+	    \begin{itemize}
+            \item Choosing an appropriate neural network architecture
+            \item Simulating the communication channel and proposed transmitter/receiver
+            \item Choosing an approapriate FPGA
+        \end{itemize}
+        
+	    \\
+	    These correspond to the aims and objectives discussed in our initial project proposal report \autocite{proposal_report}. 
+	    
 	\section{Work Done}
     	\subsection{An Vo}
     	\input{an.tex}
@@ -150,5 +163,9 @@
 		\label{table:time}
 	\end{table}
 \end{landscape}
+	
+	\newpage
+	
+	\printbibliography
 	
 \end{document}
