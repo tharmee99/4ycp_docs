@@ -1,0 +1,23 @@
+% !TeX root = interim.tex
+
+\iffalse
+
+Copied and pasted the introduction from our proposal report. I think it's a good start. I've summarised the notes for the intro from the guide below:
+
+- Starting with a general introduction of the area of study and leading to a very narrow insight into the focus of the project
+- Aims and Objective of the project in bullet point form
+- Briefly introduce the structure of the report
+
+\fi
+
+
+In the past decade, machine learning has been used in an increasing number of classification, regression and forecasting solutions, performing faster and with higher accuracy than the best traditional algorithms. There has been a high interest in moving Neural Networks away from high cost, low efficiency CPUs and GPUs towards Field Programmable Gate Arrays (FPGAs) and Application-Specific Integrated Circuit (ASICs) \autocite{7929192}. Neural network implementations on FPGA show a margin of magnitude higher power efficiency that could be cheaper and even suitable for embedded Internet of Things (IoT) applications \autocite{7799795,8954866,8469659,8330546,8693488}. Furthermore, the flexibility of FPGAs enables building large scale neural network \autocite{8823487,7045812}, enabling even higher performance than current top of the line GPUs \autocite{8702332,8412552}. 
+\\
+
+Optical communication systems provide the means for high throughput high speed communication and are used in a variety of applications from the transatlantic fiber cable to inter-data-center communication. Fast and reliable communication is a key requirement in such applications and is hindered by phenomena such as chromatic dispersion and non-linear photodiode detection \autocite{8433895}. One of the aims of this project is to combine new research in binary/quantised neural networks and implement these machine learning algorithms in communication systems. This has not been done before. Additionally, this project will attempt to combine the performance of machine learning techniques with the flexibility and scalability of FPGAs in order to mitigate non-linear distortions and noise introduced in optical communication systems and thereby increase the maximum data throughput that is achievable by the communication system. 
+\\
+
+As opposed to manually engineering the modulation scheme for a communication system, a neural network in the transmitter can be treated as a black box which learns the optimal modulation scheme for each instance of a communication channel. This not-only ensures an optimal modulation scheme for a communication system but is also able to adapt to each unique implementation of an optical communication system. Likewise, a neural network at the receiving end can be treated as a black box equalizer and demodulator as opposed to manually implementing digital back-propagation or other compensation techniques. The neural network will be implemented on FPGAs for optimal computing speeds as well as power efficiency and should be able to deal with the high throughput that optical communication systems are subject to. 
+\\
+
+This report will focus on the current trajectory of the project. In \S \ref{sec:project_status} the project timeline as well as the progress to date are discussed. \S \ref{sec:difficulties} any difficulties that were encountered are highlighted with insight into how these obstacles were overcome. Furthermore \S \ref{sec:difficulties} also discusses any changes to the failure/safety risk assessments. 

@@ -52,8 +52,11 @@
 
 \setlength{\parindent}{0pt}
 
+% Any images to be used in this report or other reports should be placed under the resources directory
+\graphicspath{{../resources/}}
+
 \begin{document}
-	\makeTitlePage{Progress Report II}{ELEC0118 Fourth Year MEng Project}
+	\makeTitlePage{Progress Report II}{ELEC0118 - Fourth Year MEng Project}
         
 	\section{Introduction}
 	    \subsection{Project Goals}
@@ -66,7 +69,6 @@
             \item Choosing an approapriate FPGA
         \end{itemize}
         
-	    \\
 	    These correspond to the aims and objectives discussed in our initial project proposal report \autocite{proposal_report}. 
 	    
 	\section{Work Done}
@@ -83,18 +85,19 @@
     	\input{tam.tex}
 	
 	\section{Failure Risk Assessment}
-	At the moment we are behind of a planned schedule.
+	At the moment we are behind of a planned schedule as we have not chosen and ordered a suitable FPGA. However this is in progress and has nearly been finalized and no major alterations to the schedule are necessary. The updated Gantt chart is given in \S \ref{sec:project_schedule}.
 	
 	\section{Updated Safety Risk Assessment}
-    There are no updates on safety risk assessment.
+    As the chosen approach of the project has not changed and no additional tasks were added, the safety risk assessment remains unchanged to the one in the proposal report \autocite{proposal_report}.
     
     \section{Help and Advice Needed}
-    At this state no help is needed, and any small issues are sorted out in weekly supervisor meetings.
+    Any concerns and confusions are discussed with the project supervisor at our weekly virtual meetings. This has enabled us to periodically gain feedback and additional sources to review.
 	
 	
 	\newpage
 \begin{landscape}
-	\subsection{Project Schedule}
+	\section{Project Schedule}
+	\label{sec:project_schedule}
 	
 	\begin{table}[h!]
 		\centering
@@ -103,7 +106,7 @@
 			y unit chart=0.5cm,
 			x unit=0.92mm,
 			hgrid,
-			today=2020-12-03,
+			today=2020-12-08,
 			today label node/.append style={below=12pt},
 			today label font=\itshape\color{blue},
 			today rule/.style={draw=blue, ultra thick},
@@ -124,14 +127,14 @@
 			\gantttitle{}{6} \\
 			
 			\ganttbar[progress=100]{Literature Review}{2020-10-05}{2020-10-22}\\
-			\ganttbar[progress=45]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
-			\ganttbar[progress=0]{BNN for TensorFlow}{2020-11-29}{2020-12-14}
+			\ganttbar[progress=95]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
+			\ganttbar[progress=20]{BNN for TensorFlow}{2020-11-29}{2020-12-14}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-02-01}\\
-			\ganttbar[progress=80]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
-			\ganttbar[progress=0]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
-			\ganttbar[progress=0]{FPGA Tools \& Structures}{2020-11-09}{2020-12-14}
+			\ganttbar[progress=100]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
+			\ganttbar[progress=85]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
+			\ganttbar[progress=50]{FPGA Tools \& Structures}{2020-11-09}{2020-12-14}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-03-14}\\
-			\ganttbar[progress=0]{Writing NN on HDL}{2020-11-15}{2020-12-06}
+			\ganttbar[progress=20]{Writing NN on HDL}{2020-11-15}{2020-12-06}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-03-21}\\
 			\ganttbar[progress=0]{Training COMs model}{2021-02-01}{2021-03-01}\\
 			\ganttbar[progress=0]{Porting model to FPGA}{2021-02-25}{2021-03-14}\\

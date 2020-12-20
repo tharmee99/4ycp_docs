@@ -1,0 +1,78 @@
+% !TeX root = interim.tex
+
+\iffalse
+
+
+\fi
+
+\begin{landscape}
+	\section{Gantt Chart}
+	\label{app:gantt_chart}
+
+	\begin{table}[h!]
+		\centering
+		\begin{ganttchart}[
+			y unit title=0.5cm,
+			y unit chart=0.5cm,
+			x unit=0.92mm,
+			hgrid,
+			today=2020-10-21,
+			today label node/.append style={below=12pt},
+			today label font=\itshape\color{blue},
+			today rule/.style={draw=blue, ultra thick},
+			title height=1,
+			bar/.append style={fill=blue!50},
+			bar incomplete/.append style={fill=gray!50},
+			progress label text={$\displaystyle{#1\%}$},
+			time slot format=isodate,
+			milestone/.append style={inner sep=2pt, draw},
+			title/.style={fill=heading!25, draw=black},
+			link/.style={->, ultra thick, style=blue!50!black},
+			milestone inline label node/.append style={left=5mm}
+			]{2020-10-05}{2021-04-30}
+			\gantttitlecalendar{year, month=shortname} \\
+			\gantttitle{40}{6}
+			\gantttitlelist{41,...,52}{7}
+			\gantttitlelist{1,...,16}{7}
+			\gantttitle{}{6} \\
+			
+			\ganttbar[progress=100]{Literature Review}{2020-10-05}{2020-10-22}\\
+			\ganttbar[progress=0]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
+			\ganttbar[progress=0]{BNN for TensorFlow}{2020-11-29}{2020-12-14}
+			\ganttbar[progress=0]{}{2021-01-12}{2021-02-01}\\
+			\ganttbar[progress=0]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
+			\ganttbar[progress=0]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
+			\ganttbar[progress=0]{FPGA Tools \& Structures}{2020-11-09}{2020-12-14}
+			\ganttbar[progress=0]{}{2021-01-12}{2021-03-14}\\
+			\ganttbar[progress=0]{Writing NN on HDL}{2020-11-15}{2020-12-06}
+			\ganttbar[progress=0]{}{2021-01-12}{2021-03-21}\\
+			\ganttbar[progress=0]{Training COMs model}{2021-02-01}{2021-03-01}\\
+			\ganttbar[progress=0]{Porting model to FPGA}{2021-02-25}{2021-03-14}\\
+			\ganttbar[progress=0]{Testing model to real COM}{2021-03-14}{2021-04-11}\\
+			\ganttbar[progress=0]{Testing FPGA with real COM}{2021-03-21}{2021-04-27}\\
+			\ganttbar[progress=0]{Writing final report}{2021-03-27}{2021-04-30}\\
+% 			\ganttlink[link/.append, link type=dr]{elem3}{elem4}
+% 			\ganttlink[link/.append, link type=dr]{elem4}{elem5}
+			
+			\ganttmilestone{Project Proposal finalised}{2020-10-23}\\			
+			\ganttmilestone{Progress Report \#1}{2020-11-11}\\
+			\ganttmilestone{Progress Report \#2}{2020-12-02}\\
+			\ganttmilestone{December Interim Report}{2020-12-16}\\
+			\ganttmilestone{Progress Report \#3}{2021-02-05}\\
+			\ganttmilestone{Progress Report \#4}{2021-03-05}\\
+			\ganttmilestone{Progress Report \#5}{2021-04-13}\\
+			\ganttmilestone{Poster Presentation}{2021-04-17}\\
+			\ganttmilestone{Final Report}{2021-04-30}
+			\ganttvrule{Reading Week}{2020-11-09}
+			\ganttvrule{}{2020-11-15}
+			\ganttvrule[vrule label node/.append style={anchor=north west}]{Holidays}{2020-12-18}
+			\ganttvrule{}{2021-01-11}
+			\ganttvrule{Reading Week}{2021-02-15}
+			\ganttvrule{}{2021-02-21}
+			\ganttvrule{Term 2 Ends}{2021-03-26}
+			\ganttvrule{Term 3 Starts}{2021-04-26}
+		\end{ganttchart}	
+		\caption{Project schedule and deadlines in a Gantt chart}
+		\label{table:time}
+	\end{table}
+\end{landscape}

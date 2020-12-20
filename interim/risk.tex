@@ -1,0 +1,26 @@
+% !TeX root = interim.tex
+
+\iffalse
+
+
+\fi
+
+\newcolumntype{C}{>{\raggedright\arraybackslash}X}
+\setlength\extrarowheight{7pt}
+
+\begin{table}[h]
+	\centering
+	\begin{tabularx}{1\textwidth}{X|X|C|C}
+        \textbf{Task} & \textbf{Hazard} & \textbf{Risk} & \textbf{Control} \\ \hline
+        \multirow{3}{\hsize}{HDL and NN implementations and programming} & \multirow{3}{\hsize}{Working with a computer} & RSI - \textbf{Low}	& Properly use mouse/keyboard \\ \cline{3-4}
+        && 	Eye strain - \textbf{Low} & Make constant breaks\\ \cline{3-4}
+        && 	Bad posture - \textbf{Medium} & Make sure to sit properly\\ \hline
+        \multirow{3}{\hsize}{Working with the equipment in a lab} 
+         & Working with hand tools &  Skin cuts - \textbf{Medium} & Use proper procedure while handling tools \\ \cline{2-4}
+         & Accident short-circuits or high power electronics use & Burns from hot wires/chips  - \textbf{Medium}&  Use current limit on power supplies \& appropriate cooling \\\cline{2-4}
+         & Public space & COVID-19 infection - \textbf{High}&  Follow all safety procedures suggested by the lab \\
+          \hline
+\end{tabularx}
+	\caption{Risk Assessment Grid}
+	\label{table:riskgrid}
+\end{table}
