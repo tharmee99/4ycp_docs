@@ -1,0 +1,97 @@
+% !TeX root = interim.tex
+
+\section{Safety Risk Assessment}
+\label{app:safety_risk_assessment}
+\input{risk.tex}
+	
+\input{gantt_chart.tex}
+
+\section{Symbol Mapping Learnt by End-to-End Autoencoder}
+\label{app:learnt_symbol_mapping}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{learnt_symbol_mapping.png}
+	\caption{}
+	\label{fig:learnt_symbol_mapping}	
+\end{figure}
+
+\section{Hardware List}
+\label{app:hardware_list}
+
+\begin{table}[h]
+	\centering
+	\begin{tabularx}{1\textwidth}{l|r|r|l|r}
+        \textbf{Model Name} & \textbf{Res.} & \textbf{Sampling} & \textbf{Interface} & \textbf{Price} \\ \hline
+        \multicolumn{2}{l}{\textit{Analogue-Digital Converters}} \\ \hline
+        ADC12DL3200EVM	& 12bit	& 6.4 GSPS &	FMC \& JESD204B	& £2,971.98 \\
+        ADC32RF45EVM	& 14bit	& 3 GSPS &	FMC \& JESD204B	& £2,476.49 \\
+        ADC12DJ2700	& 12bit	& 5.4 GSPS &	FMC+ \& JESD204B	& £1,980.99 \\
+        ADC12D1600RF	& 12bit	& 3.2 GSPS &	Parallel LVDS 	& £2,476.49 \\
+        ADC12DJ3200EVM	& 12bit	& 6.4 GSPS &	FMC+ \& JESD204B	& £2,476.49 \\
+        ADC12D1800	& 12bit	& 3.6 GSPS &	Parallel LVDS 	& £1,980.99 \\
+        ADC10D1500RB	& 10bit	& 3 GSPS &	Parallel LVDS 	& £1,980.99 \\
+        ADC12DJ3200	& 12bit	& 6.4 GSPS &	FMC+ \& JESD204B	& £2,476.49 \\
+        ADC08DJ3200EVM	& 8bit	& 6.4 GSPS &	FMC+ \& JESD204B	& £1,287.30 \\
+        ADC08D1520RB	& 8bit	& 3 GSPS &	FMC \& Parallel LVDS 	& £990.00 \\
+        ADC12DJ5200RFEVM	& 12bit	& 10.4 GSPS &	FMC+ \& JESD204B	& £3,500.00 \\
+        AD9213-10GEBZ	& 12bit	& 10.25 GSPS &	FMC+ \& JESD204B	& £4,633.38 \\
+        AD9213-6GEBZ 	& 12bit	& 6 GSPS &	FMC+ \& JESD204B	& £2,938.78 \\
+        AD9208-3000EBZ 	& 14bit	& 3 GSPS &	FMC \& JESD204B	& £1,779.33 \\
+        ADC12J1600	& 12bit	& 1.6 GSPS &	FMC \& JESD204B	& £990.00 \\ \hline
+        \multicolumn{2}{l}{\textit{Digital-Analogue Converters}} \\ \hline
+        DAC38RF82EVM	& 14bit &	9 GSPS	 & FMC \& JESD204B &	£840.00 \\
+        DAC38RF87EVM	& 14bit &	6.2 GSPS & FMC \& JESD204B &	£890.90 \\
+        DAC39J84EVM		& 16bit &	2.8 GSPS&	FMC \& JESD204B &	£593.60 \\
+        DAC39J82EVM     & 16bit &   2.8 GPSP& FMC \& JESD204B & £593.60 \\
+        AD9171-FMC-EBZ 	& 16bit &	6.2 GSPS&	FMC \& JESD204B &	£976.63 \\
+        AD9172-FMC-EBZ  	& 16bit &	12.6 GSPS&	FMC \& JESD204B &	£976.63 \\
+        AD9173-FMC-EBZ  	& 16bit &	12.6 GSPS&	FMC \& JESD204B &	£976.63 \\
+    \end{tabularx}
+\end{table}
+\begin{table}[h]
+    \begin{tabularx}{1\textwidth}{l|r|r|l|r}
+        \textbf{Model Name} & \textbf{Res.} & \textbf{Sampling} & \textbf{Interface} & \textbf{Price} \\ \hline
+        AD9176-FMC-EBZ  	& 16bit &	12.6 GSPS &
+        \parbox[t]{3cm}{FMC \& JESD204B} &	£944.06 \\
+        AD9162-FMCC-EBZ		& 16bit &	12 GSPS	&
+        \parbox[t]{3cm}{FMC \& JESD204B} &	£709.06 \\
+        AD9162-FMC-EBZ 		& 16bit &	12 GSPS	&
+        \parbox[t]{3cm}{FMC \& JESD204B} &	£976.63 \\
+        AD9164-FMCC-EBZ 	& 16bit &	12 GSPS	&
+        \parbox[t]{3cm}{FMC \& JESD204B} &	£709.06 \\
+        AD9164-FMC-EBZ  	& 16bit &	12 GSPS	&
+        \parbox[t]{3cm}{FMC \& JESD204B} &	£976.63 \\ \hline
+        
+        \multicolumn{2}{l}{\textit{ADC and DAC combo boards}} &\\ \hline
+        
+        AFE7422EVM          & 14bit	& \begin{tabular}{@{}r@{}}9 GSPS DAC\\ 3 GSPS ADC\end{tabular} & \parbox[t]{3cm}{FMC \& JESD204B} & £1,980.99 \\
+        AD9082-FMCA-EBZ     & 16bit	& \begin{tabular}{@{}r@{}}12 GSPS DAC\\ 6 GSPS ADC\end{tabular} & 
+        \parbox[t]{3cm}{FMC+ \& JESD204B} & £2,675.67 \\
+        TSW40RF82EVM        & 14bit	& \begin{tabular}{@{}r@{}}9 GSPS DAC\\ 3 GSPS ADC\end{tabular} &
+        \parbox[t]{3cm}{FMC \& JESD204B} & £2,476.49 \\
+        \parbox[t]{3cm}{HTG-FMC-12ADC-16DAC} & \begin{tabular}{@{}r@{}}16bit DAC\\ 12bit ADC\end{tabular} &
+        \begin{tabular}{@{}r@{}}12.6 GSPS DAC\\ 10.25 GSPS ADC\end{tabular} &
+        \parbox[t]{3cm}{FMC+ \& JESD204B} & \$6,995.00 \\
+    \end{tabularx}
+	\caption{List of mezzanine card options for ADC and DAC. Prices and availability as 2020/12/20}
+	\label{table:hw_list}
+\end{table}
+\begin{table}[h]
+    \begin{tabularx}{1\textwidth}{l|l|l|c|c|r}
+        \textbf{Model Name} & \textbf{Memory} & \textbf{FMC} & \textbf{FPGA}& \textbf{LUTs} & \textbf{Price} \\ \hline
+        ADS9-V2EBZ &	HMC Gen2 &	1x FMC+ & \parbox[t]{3cm}{XCKU15P-2FFVE1517E} & 522,720 & £6,684.72 \\
+        ADS8-V1EBZ &	DDR4 &	1x FMC+ & \parbox[t]{3cm}{XCKU040-3FFVA1156E} & 530,250 & £2,915.10 \\
+        ADS7-V2EBZ &	DDR3 &	1x HPC & \parbox[t]{3cm}{XC7VX330T-3FFG1157E}  & 326,400 & £1,487.23 \\
+        ZCU102 &	DDR4 &	2x HPC & \parbox[t]{3cm}{XCZU9EG-2FFVB1156}  & 600,000 & £2,164.50 \\
+        ZCU104 &	DDR4 &	1x LPC & \parbox[t]{3cm}{XCZU7EV-2FFVC1156} & 504,000 & £1,180.27 \\
+        ZCU106 &	DDR4 &	2x HPC & \parbox[t]{3cm}{XCZU7EV-2FFVC1156} & 504,000 & £2,274.33 \\
+        TSW14J57EVM & DDR4 & 1x FMC+ & Arria10 & - & £1,980.99 \\
+        KCU105 &	DDR4 &	\parbox[t]{1.8cm}{1x LPC \\ 1x HPC}  & \parbox[t]{3cm}{XCKU040-2FFVA1156E} & 530,000 & £2,274.33 \\
+        EK-K7-KC705-G & DDR3 &  \parbox[t]{1.8cm}{1x LPC \\ 1x HPC} & \parbox[t]{3cm}{XC7K325T-2FFG900C} & 326,080 & £1,544.95 \\
+        
+
+    \end{tabularx}
+	\caption{List of FPGA boards. Prices and availability as 2020/12/20}
+	\label{table:fpga_list}
+\end{table}

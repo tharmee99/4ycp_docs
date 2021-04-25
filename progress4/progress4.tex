@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{newunicodechar}
+%\usepackage{lmodern}
+\usepackage{textgreek}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[format=plain,labelfont={bf,it},font=it]{caption}
+\usepackage{enumitem}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{../libraries/pgfgantt}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{array}
+
+
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{chngcntr}
+\usepackage{longtable}
+\usepackage{xcolor,colortbl}
+\usepackage{multicol} 
+\usepackage{oubraces}
+\usepackage{stfloats}
+
+% Bibliography
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% Common templates
+\usepackage{../templates/templates}
+
+% Figure formatting
+\setcounter{tocdepth}{3}
+\counterwithin{figure}{subsection} 
+\counterwithin{table}{subsection}
+
+% Style colours
+\definecolor{heading}{HTML}{3298DC}
+\definecolor{headingText}{HTML}{FFFFFF} 
+\definecolor{darkred}{rgb}{0.6,0,0}
+
+\setlength{\parindent}{0pt}
+
+% Any images to be used in this report or other reports should be placed under the resources directory
+\graphicspath{{../resources/}}
+
+\begin{document}
+	\makeTitlePage{Progress Report IV}{ELEC0118 - Fourth Year MEng Project}
+        
+	\section{Introduction}
+	    \subsection{Project Goals}
+	    
+	    This project aims to develop an end-to-end deep learning in optical communication systems and implement the learnt model on an FPGA ready for deployment in an optical fiber link. The main focus of the project during the past couple weeks were the following:
+	    
+	    \begin{itemize}
+            \item Improving the neural network architecture
+            \item Simulating existing technologies for IM/DD
+            \item Choosing an appropriate FPGA
+            \item Developing floating point arithmetic modules in HDL
+        \end{itemize}
+        
+	    These correspond to the aims and objectives discussed in our initial project proposal report \autocite{proposal_report}. 
+	    
+	\section{Work Done}
+    	\subsection{An Vo}
+    	\input{an.tex}
+    	
+    	\subsection{Mindaugas Jarmolovi\v{c}ius}
+    	\input{min.tex}
+    	
+    	\subsection{Oliver Jaison}
+    	\input{oliver.tex}
+    	
+    	\subsection{Tharmetharan Balendran}
+    	\input{tam.tex}
+	
+	\section{Failure Risk Assessment}
+	At the moment we are behind of a planned schedule as we have not chosen and ordered a suitable FPGA. However this is in progress and has nearly been finalized and no major alterations to the schedule are necessary. The updated Gantt chart is given in \S \ref{sec:project_schedule}.
+	
+	\section{Updated Safety Risk Assessment}
+    As the chosen approach of the project has not changed and no additional tasks were added, the safety risk assessment remains unchanged to the one in the proposal report \autocite{proposal_report}.
+    
+    \section{Help and Advice Needed}
+    Any concerns and confusions are discussed with the project supervisor at our weekly virtual meetings. This has enabled us to periodically gain feedback and additional sources to review.
+	
+	
+	\newpage
+\begin{landscape}
+	\section{Project Schedule}
+	\label{sec:project_schedule}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{ganttchart}[
+			y unit title=0.5cm,
+			y unit chart=0.5cm,
+			x unit=0.92mm,
+			hgrid,
+			today=2021-03-14,
+			today label node/.append style={below=12pt},
+			today label font=\itshape\color{blue},
+			today rule/.style={draw=blue, ultra thick},
+			title height=1,
+			bar/.append style={fill=blue!50},
+			bar incomplete/.append style={fill=gray!50},
+			progress label text={$\displaystyle{#1\%}$},
+			time slot format=isodate,
+			milestone/.append style={inner sep=2pt, draw},
+			title/.style={fill=heading!25, draw=black},
+			link/.style={->, ultra thick, style=blue!50!black},
+			milestone inline label node/.append style={left=5mm}
+			]{2020-10-05}{2021-04-30}
+			\gantttitlecalendar{year, month=shortname} \\
+			\gantttitle{40}{6}
+			\gantttitlelist{41,...,52}{7}
+			\gantttitlelist{1,...,16}{7}
+			\gantttitle{}{6} \\
+			
+			\ganttbar[progress=100]{Literature Review}{2020-10-05}{2020-10-22}\\
+			\ganttbar[progress=100]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
+			\ganttbar[progress=40]{RNN layers in Autoencoder}{2021-01-11}{2021-03-01}\\
+			\ganttbar[progress=70]{BNN for TensorFlow}{2020-11-29}{2021-03-01}\\
+			%\ganttbar[progress=0]{}{2021-01-12}{2021-02-01}\\
+			\ganttbar[progress=100]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
+			\ganttbar[progress=100]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
+			\ganttbar[progress=90]{FPGA Tools \& Structures}{2020-11-09}{2021-03-14}\\
+			%\ganttbar[progress=0]{}{2021-01-12}{2021-03-14}\\
+			\ganttbar[progress=90]{Writing NN on HDL}{2020-11-15}{2021-03-21}\\
+			%\ganttbar[progress=0]{}{2021-01-12}{2021-03-21}\\
+			\ganttbar[progress=90]{Training COMs model}{2021-02-01}{2021-03-01}\\
+			\ganttbar[progress=10]{Porting model to FPGA}{2021-02-25}{2021-03-14}\\
+			\ganttbar[progress=0]{Testing model with COM simulation}{2021-03-14}{2021-04-11}\\
+			\ganttbar[progress=0]{Writing final report}{2021-03-27}{2021-04-30}\\
+			% 			\ganttlink[link/.append, link type=dr]{elem3}{elem4}
+			% 			\ganttlink[link/.append, link type=dr]{elem4}{elem5}
+			
+			\ganttmilestone{Project Proposal finalised}{2020-10-23}\\			
+			\ganttmilestone{Progress Report \#1}{2020-11-11}\\
+			\ganttmilestone{Progress Report \#2}{2020-12-02}\\
+			\ganttmilestone{December Interim Report}{2020-12-16}\\
+			\ganttmilestone{Progress Report \#3}{2021-02-05}\\
+			\ganttmilestone{Progress Report \#4}{2021-03-05}\\
+			\ganttmilestone{Progress Report \#5}{2021-04-13}\\
+			\ganttmilestone{Poster Presentation}{2021-04-17}\\
+			\ganttmilestone{Final Report}{2021-04-30}
+			\ganttvrule{Reading Week}{2020-11-09}
+			\ganttvrule{}{2020-11-15}
+			\ganttvrule[vrule label node/.append style={anchor=north west}]{Holidays}{2020-12-18}
+			\ganttvrule{}{2021-01-11}
+			\ganttvrule{Reading Week}{2021-02-15}
+			\ganttvrule{}{2021-02-21}
+			\ganttvrule{Term 2 Ends}{2021-03-26}
+			\ganttvrule{Term 3 Starts}{2021-04-26}
+		\end{ganttchart}	
+		\caption{Project schedule and deadlines in a Gantt chart}
+		\label{table:time}
+	\end{table}
+\end{landscape}
+	
+	\newpage
+	
+	\printbibliography
+	
+\end{document}

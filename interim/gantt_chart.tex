@@ -8,7 +8,7 @@
 \begin{landscape}
 	\section{Gantt Chart}
 	\label{app:gantt_chart}
-
+	
 	\begin{table}[h!]
 		\centering
 		\begin{ganttchart}[
@@ -16,7 +16,7 @@
 			y unit chart=0.5cm,
 			x unit=0.92mm,
 			hgrid,
-			today=2020-10-21,
+			today=2020-12-22,
 			today label node/.append style={below=12pt},
 			today label font=\itshape\color{blue},
 			today rule/.style={draw=blue, ultra thick},
@@ -37,22 +37,22 @@
 			\gantttitle{}{6} \\
 			
 			\ganttbar[progress=100]{Literature Review}{2020-10-05}{2020-10-22}\\
-			\ganttbar[progress=0]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
-			\ganttbar[progress=0]{BNN for TensorFlow}{2020-11-29}{2020-12-14}
+			\ganttbar[progress=100]{Implementing common NNs}{2020-10-23}{2020-12-06}\\
+			\ganttbar[progress=20]{BNN for TensorFlow}{2020-11-29}{2020-12-14}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-02-01}\\
-			\ganttbar[progress=0]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
-			\ganttbar[progress=0]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
-			\ganttbar[progress=0]{FPGA Tools \& Structures}{2020-11-09}{2020-12-14}
+			\ganttbar[progress=100]{Channel Model Simulator}{2020-10-23}{2020-11-11}\\
+			\ganttbar[progress=95]{Chose and order FPGA}{2020-11-15}{2020-12-14}\\
+			\ganttbar[progress=95]{FPGA Tools \& Structures}{2020-11-09}{2020-12-14}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-03-14}\\
-			\ganttbar[progress=0]{Writing NN on HDL}{2020-11-15}{2020-12-06}
+			\ganttbar[progress=50]{Writing NN on HDL}{2020-11-15}{2020-12-06}
 			\ganttbar[progress=0]{}{2021-01-12}{2021-03-21}\\
 			\ganttbar[progress=0]{Training COMs model}{2021-02-01}{2021-03-01}\\
 			\ganttbar[progress=0]{Porting model to FPGA}{2021-02-25}{2021-03-14}\\
 			\ganttbar[progress=0]{Testing model to real COM}{2021-03-14}{2021-04-11}\\
 			\ganttbar[progress=0]{Testing FPGA with real COM}{2021-03-21}{2021-04-27}\\
 			\ganttbar[progress=0]{Writing final report}{2021-03-27}{2021-04-30}\\
-% 			\ganttlink[link/.append, link type=dr]{elem3}{elem4}
-% 			\ganttlink[link/.append, link type=dr]{elem4}{elem5}
+			% 			\ganttlink[link/.append, link type=dr]{elem3}{elem4}
+			% 			\ganttlink[link/.append, link type=dr]{elem4}{elem5}
 			
 			\ganttmilestone{Project Proposal finalised}{2020-10-23}\\			
 			\ganttmilestone{Progress Report \#1}{2020-11-11}\\

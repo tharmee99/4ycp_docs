@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{newunicodechar}
+%\usepackage{lmodern}
+\usepackage{textgreek}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[format=plain,labelfont={bf,it},font=it]{caption}
+\usepackage{enumitem}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{../libraries/pgfgantt}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{array}
+
+
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{chngcntr}
+\usepackage{longtable}
+\usepackage{xcolor,colortbl}
+\usepackage{multicol} 
+\usepackage{oubraces}
+\usepackage{stfloats}
+\usepackage{tocloft}
+
+
+% Bibliography
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% Common templates
+\usepackage{../templates/templates}
+
+% Figure formatting
+\setcounter{tocdepth}{3}
+\counterwithin{figure}{subsection} 
+\counterwithin{table}{subsection}
+
+% Style colours
+\definecolor{heading}{HTML}{3298DC}
+\definecolor{headingText}{HTML}{FFFFFF} 
+\definecolor{darkred}{rgb}{0.6,0,0}
+
+\setlength{\parindent}{0pt}
+
+% Dots to TOC
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+% This enviroment ensures that structures like listing and tables are not broken between columns or pages.
+\newenvironment{blockpage}
+{\begin{center}\begin{minipage}[c]{\linewidth}}
+{\end{minipage}\end{center}}
+
+% This allows placing figure in column
+\newenvironment{colfigure}
+{\par\medskip\noindent\minipage{\linewidth}}
+{\endminipage\par\medskip}
+\raggedbottom
+
+\begin{document}
+	\makeTitlePage{HDL Implementation of End-To-End Machine Learning In Optical Communication 
+	System}{ELEC0118 - Fourth Year MEng Project}
+	
+	\onecolumn
+	\tableofcontents
+	\pagebreak
+	
+	\twocolumn
+	\section{Abstract}\label{sec:abstract}
+	\input{1-abstract.tex}
+	
+	\section{Introduction}\label{sec:introduction}
+	\input{2-introduction.tex}
+
+	\section{Goals and Objectives}\label{sec:objectives}
+	\input{3-objectives.tex}
+
+	\section{Theory and Analytical Bases}\label{sec:theory}
+	\input{4-theory.tex}
+
+	\section{Technical Method}\label{sec:methods}
+	\input{5-methods.tex}
+	
+	\section{Results and Analysis}\label{sec:results}
+	\input{6-results.tex}
+
+	\section{Conclusion}\label{sec:conclusion}
+	\input{7-conclusion.tex}
+
+	\printbibliography
+	
+	\onecolumn
+	\section{Appendix}\label{sec:appendix}
+	\input{8-appendix.tex}
+	
+\end{document}
