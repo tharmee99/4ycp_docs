@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -6,6 +6,7 @@
 %\usepackage{lmodern}
 \usepackage{textgreek}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{float}
@@ -57,7 +58,6 @@
 % Dots to TOC
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
-
 % This enviroment ensures that structures like listing and tables are not broken between columns or pages.
 \newenvironment{blockpage}
 {\begin{center}\begin{minipage}[c]{\linewidth}}
@@ -69,9 +69,15 @@
 {\endminipage\par\medskip}
 \raggedbottom
 
+% Any images to be used in this report or other reports should be placed under the resources directory
+\graphicspath{{../resources/}}
+
+% Prevents overflow of columns
+\columnsep 8truemm
+\setlength{\emergencystretch}{3em}
+
 \begin{document}
-	\makeTitlePage{HDL Implementation of End-To-End Machine Learning In Optical Communication 
-	System}{ELEC0118 - Fourth Year MEng Project}
+	\makeTitlePage{HDL Implementation of End-To-End Machine Learning In Optical Communication System}{ELEC0118 - Fourth Year MEng Project}
 	
 	\onecolumn
 	\tableofcontents
@@ -84,13 +90,13 @@
 	\section{Introduction}\label{sec:introduction}
 	\input{2-introduction.tex}
 
-	\section{Goals and Objectives}\label{sec:objectives}
-	\input{3-objectives.tex}
-
+	\section{Goals and Objectives}\label{sec:goals}
+	\input{3-goals.tex}
+	
 	\section{Theory and Analytical Bases}\label{sec:theory}
 	\input{4-theory.tex}
 
-	\section{Technical Method}\label{sec:methods}
+	\section{Methodology}\label{sec:methods}
 	\input{5-methods.tex}
 	
 	\section{Results and Analysis}\label{sec:results}
